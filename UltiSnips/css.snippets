@@ -1,0 +1,13 @@
+snippet cf
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both }
+.clearfix { *zoom: 1 }
+endsnippet
+
+snippet -
+-webkit-$1:$2
+-moz-$1:$2
+-o-$1:$2
+$1:$2
+$0
+endsnippet

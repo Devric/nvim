@@ -1,0 +1,7 @@
+# Neovim 0.2.3
+
+# Base folder
+~/.config/nvim
+
+# require Python3 neovim
+Python3 install neovim
