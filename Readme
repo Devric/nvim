@@ -4,4 +4,4 @@
 ~/.config/nvim
 
 # require Python3 neovim
-Python3 install neovim
+pip3 install neovim
