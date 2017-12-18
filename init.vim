@@ -31,15 +31,20 @@ call plug#begin('~/.config/nvim/plugged')
 " ====================================
 Plug 'morhetz/gruvbox'      " theme
 Plug 'sheerun/vim-polyglot' " syntax highlight
-Plug 'prettier/prettier'    " 
-Plug 'Yggdroot/indentLine'  " indent line
-Plug 'myusuf3/numbers.vim'  " relative line number
-Plug 'gregsexton/MatchTag'  " match tag
+Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript','vue','ng','jsx','html']}
+" js syntax {
+    let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter,react,flux,jasmine,chai,vue,d3'
+" }
+
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+Plug 'Yggdroot/indentLine', {'on':[]}  " indent line
+Plug 'myusuf3/numbers.vim', {'on':[]}  " relative line number
+Plug 'gregsexton/MatchTag', {'on':[]}  " match tag
 
 " Formating
 " ====================================
 Plug 'junegunn/vim-easy-align'
-Plug  'godlygeek/tabular'
+Plug  'godlygeek/tabular', { 'on':  'Tabularize' }
 " tabularize {
 vnoremap <silent> <Space> :Tabularize /
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
@@ -60,32 +65,31 @@ endfunction
 Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-gitgutter'
 
 " IDE
 " ====================================
-Plug 'severin-lemaignan/vim-minimap'
+Plug 'severin-lemaignan/vim-minimap', {'on': ['Minimap','MinimapToggle']}
 " MiniMap {
 let g:minimap_toggle='<leader>m'
 let g:minimap_highlight='Visual'
 " }
-Plug 'scrooloose/nerdtree'   		" tree menu
+Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree','NERDTreeToggle' ] }   		" tree menu
 " Nerdtree {
-map <F1> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+    map <F1> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
 
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
+    let NERDTreeShowBookmarks=1
+    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+    let NERDTreeChDirMode=0
+    let NERDTreeQuitOnOpen=1
+    let NERDTreeShowHidden=1
+    let NERDTreeKeepTreeInNewTab=1
 " }
 
-Plug 'fholgado/minibufexpl.vim'
+Plug 'fholgado/minibufexpl.vim', {'on':'MBEToggle'}
 
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim', {'on':'Ack'}
 " Ack {
-map <Leader>f :Ack <cword><cr>
+    map <Leader>f :Ack <cword><cr>
 " }
 
 Plug 'szw/vim-ctrlspace'
@@ -103,6 +107,22 @@ Plug 'zoeesilcock/vim-caniuse' " can i use :Caniuse border-radius
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim' 		" cool status line
+" lightline {
+let g:lightline = {
+  \   'active': {
+  \     'left':[ [ 'mode', 'paste' ],
+  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+  \     ]
+  \   },
+	\   'component': {
+	\     'lineinfo': '%3l:%-2v',
+	\   },
+  \   'component_function': {
+  \     'gitbranch': 'fugitive#head',
+  \   }
+  \ }
+" }
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround' 		" quickly change surounded tags quotes brackts
 " surround {
@@ -128,17 +148,16 @@ map <leader>g :call Stringify()<CR>
 
 Plug 'moll/vim-node'
 
-
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
 " tagbar {
-let g:tagbar_usearrows = 1
-nnoremap <F3> :TagbarToggle<CR>
+    let g:tagbar_usearrows = 1
+    nnoremap <F3> :TagbarToggle<CR>
 " }
 
 
 Plug 'vim-scripts/compview'           " fast serach buffer <leader> v
 " compview {
-nnoremap <leader>v :CompView<cr>
+    nnoremap <leader>v :CompView<cr>
 " }
 
 Plug 'chrisbra/NrrwRgn'      " select specific text trunk to edit
@@ -146,21 +165,20 @@ Plug 'chrisbra/NrrwRgn'      " select specific text trunk to edit
 vnoremap <Enter> :NR<cr>
 " }
 
-
 Plug 'AndrewRadev/splitjoin.vim'
 
 " Completions
 Plug 'mattn/emmet-vim'
 " emmet {
-let g:use_emmet_complete_tag = 1
+    let g:use_emmet_complete_tag = 1
 " }
 Plug 'scrooloose/nerdcommenter' 	" easy commenting
 Plug 'vim-scripts/HTML-AutoCloseTag'  " fast close html tags
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'ternjs/tern_for_vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript','vue','ng','jsx', 'js', 'html'], 'do': 'npm install -g tern' }
 " tern {
     let g:tern#command = ["tern"]
     let g:tern#arguments = ["--persistent"]
@@ -185,43 +203,17 @@ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
                 \ ]
 " }
 
-Plug 'SirVer/ultisnips'  			" snippets
-" ultra snippets {
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-                return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
-
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-e>"
-" this mapping Enter key to <C-y> to chose the current highlight item 
-" and close the selection list, same as other IDEs.
-" CONFLICT with some plugins like tpope/Endwise
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-let g:ycm_key_list_select_completion=[]
-let g:ycm_key_list_previous_completion=[]
-" }
-
-
 " Version Control
 " ======================================
 Plug 'tpope/vim-fugitive'     " vim git commands
 Plug 'airblade/vim-gitgutter' " create a gutter for git + - when file is changed
-Plug 'sjl/splice.vim'         " 3 way diff for git merge
+" gitguter {
+    set updatetime=250
+    let g:gitgutter_max_signs = 1000 
+" }
+Plug 'sjl/splice.vim', {'on': ['SpliceDiff', 'SpliceCompare']}         " 3 way diff for git merge
 
-Plug 'mbbill/undotree'          " python! change tree
+Plug 'mbbill/undotree', {'on':'UndotreeToggle'}          " python! change tree
 " undotree {
 nnoremap <F2> :UndotreeToggle<CR>
 if has("persistent_undo")
@@ -230,11 +222,39 @@ if has("persistent_undo")
 endif
 " }
 
-Plug 'int3/vim-extradite'     " git history of current file
+Plug 'int3/vim-extradite', {'on': 'Extradite'}     " git history of current file
 " Extradite {
-nnoremap <F4> :Extradite<CR>
+    nnoremap <F4> :Extradite<CR>
 " }
 
+Plug 'SirVer/ultisnips' 		" snippets
+" ultra snippets {
+    function! g:UltiSnips_Complete()
+        call UltiSnips#ExpandSnippet()
+        if g:ulti_expand_res == 0
+            if pumvisible()
+                return "\<C-n>"
+            else
+                call UltiSnips#JumpForwards()
+                if g:ulti_jump_forwards_res == 0
+                    return "\<TAB>"
+                endif
+            endif
+        endif
+        return ""
+    endfunction
+
+    au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+    let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
+    let g:UltiSnipsJumpForwardTrigger="<tab>"
+    let g:UltiSnipsListSnippets="<c-e>"
+    " this mapping Enter key to <C-y> to chose the current highlight item 
+    " and close the selection list, same as other IDEs.
+    " CONFLICT with some plugins like tpope/Endwise
+    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+    let g:ycm_key_list_select_completion=[]
+    let g:ycm_key_list_previous_completion=[]
+" }
 
 call plug#end()
 
@@ -261,7 +281,7 @@ set smartcase
 " Plug Gruvbox
 let g:gruvbox_italic=1
 "let g:gruvbox_termcolors=16
-set termguicolors
+"set termguicolors
 colorscheme gruvbox
 
 " Plug IndentLine
