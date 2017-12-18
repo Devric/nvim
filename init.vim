@@ -68,6 +68,8 @@ Plug 'junegunn/fzf.vim'
 
 " IDE
 " ====================================
+Plug 'vim-scripts/zoomwintab.vim'   " zoom
+Plug 'simeji/winresizer', {'on':[]} " window resizing easier CTRL+E or :WinResizerStartResize ( enter=accept, q=cancel )
 Plug 'severin-lemaignan/vim-minimap', {'on': ['Minimap','MinimapToggle']}
 " MiniMap {
 let g:minimap_toggle='<leader>m'
@@ -135,15 +137,15 @@ Plug 'christoomey/vim-tmux-navigator' " provide movment integration with tmux, r
 Plug 'vim-scripts/sudo.vim'           " edit permission files :e sudo:/etc/passwd
 Plug 'matze/vim-move'                 " moving lines <A-k>
 " vim-move {
-let g:move_map_keys = 0
-vmap <S-k> <Plug>MoveBlockUp
-vmap <S-j> <Plug>MoveBlockDown
+    let g:move_map_keys = 0
+    vmap <S-k> <Plug>MoveBlockUp
+    vmap <S-j> <Plug>MoveBlockDown
 " }
 
 
 Plug '29decibel/vim-stringify'        " fast stringfy, <leader>G // set within this vim script
 " stringify {
-map <leader>g :call Stringify()<CR>
+    map <leader>g :call Stringify()<CR>
 " }
 
 Plug 'moll/vim-node'
@@ -178,12 +180,15 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'ternjs/tern_for_vim'
 Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
+Plug 'ludovicchabant/vim-gutentags' " ctags generator
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript','vue','ng','jsx', 'js', 'html'], 'do': 'npm install -g tern' }
 " tern {
     let g:tern#command = ["tern"]
     let g:tern#arguments = ["--persistent"]
     let g:tern_show_argument_hints   = 'on_hold'
     let g:tern_show_signature_in_pum = 1
+    let g:tern_request_timeout = 1
+    let g:tern_request_timeout = 6000
     map <leader>tt :TernType<CR>
     map <leader>td :TernDef<CR>
     map <leader>tD :TernDoc<CR>
@@ -196,6 +201,7 @@ Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript','vue','ng','jsx', 'js', 
     let g:deoplete#sources#ternjs#docs = 1
     let g:deoplete#sources#ternjs#case_insensitive = 1
     let g:deoplete#sources#ternjs#include_keywords = 1
+    let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
     let g:deoplete#sources#ternjs#filetypes = [
                 \ 'jsx',
                 \ 'javascript.jsx',
@@ -428,6 +434,15 @@ else
     map <C-k> <C-w>k
     map <C-l> <C-w>l
 endif
+
+" =====================================
+" Ternminal mode
+" =====================================
+nnoremap <leader>z :copen<CR>:terminal<CR>i source ~/.profile<CR>clear<CR>
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
 
 set pastetoggle=<F9>
 " disable paste mode after leave insert
