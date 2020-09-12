@@ -12,8 +12,8 @@ syntax enable
 set autoread " Set auto read when a file is changed outside
 set history=128
 set viminfo='20,\"50    " read/write a .viminfo file, don't store more
+set encoding=UTF-8
 " than 50 lines of registers'
-
 
 " ==================================================
 " auto-install vim-plug
@@ -32,9 +32,12 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'      " theme
 Plug 'sheerun/vim-polyglot' " syntax highlight
 Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript','vue','ng','jsx','html']}
+Plug 'jparise/vim-graphql'
 " js syntax {
     let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter,react,flux,jasmine,chai,vue,d3'
 " }
+"
+Plug 'ryanoasis/vim-devicons'
 
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
 Plug 'Yggdroot/indentLine', {'on':[]}  " indent line
@@ -68,59 +71,46 @@ Plug 'junegunn/fzf.vim'
 
 " IDE
 " ====================================
-Plug 'severin-lemaignan/vim-minimap', {'on': ['Minimap','MinimapToggle']}
-" MiniMap {
-let g:minimap_toggle='<leader>m'
-let g:minimap_highlight='Visual'
-" }
-Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree','NERDTreeToggle' ] }   		" tree menu
-" Nerdtree {
-    map <F1> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-" }
-
-Plug 'fholgado/minibufexpl.vim', {'on':'MBEToggle'}
-
 Plug 'mileszs/ack.vim', {'on':'Ack'}
 " Ack {
     map <Leader>f :Ack <cword><cr>
 " }
 
-Plug 'szw/vim-ctrlspace'
-" ctrlSpace {
-    let g:ctrlspace_load_last_workspace_on_start=1
-    let g:CtrlSpaceSearchTiming = 500
-    hi link CtrlSpaceSearch IncSearch
-    hi link CtrlSpaceNormal   PMenu
-    hi link CtrlSpaceSelected PMenuSel
-    hi link CtrlSpaceSearch   Search
-    hi link CtrlSpaceStatus   StatusLine
-" }
-
-Plug 'zoeesilcock/vim-caniuse' " can i use :Caniuse border-radius
+"Plug 'zoeesilcock/vim-caniuse' " can i use :Caniuse border-radius
 
 Plug 'editorconfig/editorconfig-vim'
+
 Plug 'itchyny/lightline.vim' 		" cool status line
 " lightline {
-let g:lightline = {
-  \   'active': {
-  \     'left':[ [ 'mode', 'paste' ],
-  \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-  \     ]
-  \   },
-	\   'component': {
-	\     'lineinfo': '%3l:%-2v',
-	\   },
-  \   'component_function': {
-  \     'gitbranch': 'fugitive#head',
-  \   }
-  \ }
+    let g:lightline = {
+    \   'active': {
+    \     'left':[ [ 'mode', 'paste' ],
+    \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+    \     ]
+    \   },
+    \   'component': {
+    \     'lineinfo': '%3l:%-2v',
+    \   },
+    \   'component_function': {
+    \     'gitbranch': 'fugitive#head',
+    \   }
+    \ }
+" }
+
+" replace mini buffer
+Plug 'mengelbrecht/lightline-bufferline'
+" lightline > tabline {
+    let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
+    let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
+    let g:lightline.component_type   = {'buffers': 'tabsel'}
+
+    let g:lightline#bufferline#show_number  = 1
+    let g:lightline#bufferline#shorten_path = 0
+    let g:lightline#bufferline#unnamed      = '[No Name]'
+    let g:lightline#bufferline#enable_devicons = 1
+    let g:lightline#bufferline#min_buffer_count = 2
+    let g:lightline#bufferline#clickable = 1
+    map <expr><silent><nowait> <C-b> &showtabline ? ":set showtabline=0\<cr>" : ":set showtabline=2\<cr>"
 " }
 
 Plug 'terryma/vim-multiple-cursors'
@@ -176,32 +166,22 @@ Plug 'scrooloose/nerdcommenter' 	" easy commenting
 Plug 'vim-scripts/HTML-AutoCloseTag'  " fast close html tags
 Plug 'jiangmiao/auto-pairs'
 
-Plug 'ternjs/tern_for_vim'
-Plug 'Shougo/deoplete.nvim', { 'do': 'UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript','vue','ng','jsx', 'js', 'html'], 'do': 'npm install -g tern' }
-" tern {
-    let g:tern#command = ["tern"]
-    let g:tern#arguments = ["--persistent"]
-    let g:tern_show_argument_hints   = 'on_hold'
-    let g:tern_show_signature_in_pum = 1
-    map <leader>tt :TernType<CR>
-    map <leader>td :TernDef<CR>
-    map <leader>tD :TernDoc<CR>
-    map <leader>tr :TernRename<CR>
-" }
+Plug 'rust-lang/rust.vim'
 
-" deoplete {
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#sources#ternjs#types = 1
-    let g:deoplete#sources#ternjs#docs = 1
-    let g:deoplete#sources#ternjs#case_insensitive = 1
-    let g:deoplete#sources#ternjs#include_keywords = 1
-    let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ ]
-" }
+" replace deoplete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" replace tern
+Plug 'neoclide/coc-tsserver', {'do': 'npm install --from-lockfile'}
+
+" replace nerd tree
+Plug 'weirongxu/coc-explorer', {'do': 'npm install --from-lockfile'}
+
+" replaces ultra snippet
+Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
+source ~/.config/nvim/plug-config/coc.vim
+" install the plugins from https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+" :CocInstall coc-rome
 
 " Version Control
 " ======================================
@@ -225,35 +205,6 @@ endif
 Plug 'int3/vim-extradite', {'on': 'Extradite'}     " git history of current file
 " Extradite {
     nnoremap <F4> :Extradite<CR>
-" }
-
-Plug 'SirVer/ultisnips' 		" snippets
-" ultra snippets {
-    function! g:UltiSnips_Complete()
-        call UltiSnips#ExpandSnippet()
-        if g:ulti_expand_res == 0
-            if pumvisible()
-                return "\<C-n>"
-            else
-                call UltiSnips#JumpForwards()
-                if g:ulti_jump_forwards_res == 0
-                    return "\<TAB>"
-                endif
-            endif
-        endif
-        return ""
-    endfunction
-
-    au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-    let g:UltiSnipsSnippetsDir="~/.config/nvim/UltiSnips"
-    let g:UltiSnipsJumpForwardTrigger="<tab>"
-    let g:UltiSnipsListSnippets="<c-e>"
-    " this mapping Enter key to <C-y> to chose the current highlight item 
-    " and close the selection list, same as other IDEs.
-    " CONFLICT with some plugins like tpope/Endwise
-    inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-    let g:ycm_key_list_select_completion=[]
-    let g:ycm_key_list_previous_completion=[]
 " }
 
 call plug#end()
@@ -445,6 +396,7 @@ map Q @@
 " Change Working Directory to that of the current file
 cmap cd. lcd %:p:h<cr>"
 
+
 " Remove trailing white space before save
 autocmd! BufWritePost :%s/\s\+$//e"
 
@@ -544,19 +496,6 @@ if has("autocmd")
 endif
 
 
-
-" minibuffer explore {
-    let g:miniBufExplModSelTarget      = 1 " active when using with taglist
-    let g:miniBufExplorerMoreThanOne   = 2 " only activate when more then one buffer
-    let g:miniBufExplUseSingleClick    = 1 " single click to change file
-    let g:miniBufExplMapWindowNavVim   = 1 " hjkl mappig
-    let g:miniBufExplSplitBelow        = 0 " 1 below, 0 above
-    let g:miniBufExplMapCTabSwitchBufs = 1 " tab s-tab navigation
-    let g:bufExplorerSortBy            = "name"
-    autocmd BufRead,BufNew :call UMiniBufExplorer
-    map <leader>u :MBEToggle<cr>
-" }
-
 " splitjoin {
     nmap <Leader>sj :SplitjoinJoin<cr>
     nmap <Leader>ss :SplitjoinSplit<cr>
@@ -590,7 +529,15 @@ endif
     nnoremap <leader>x :FZF<CR>
 " }
 
-" Deoplete {
-    " make sure ultra snip work with deoplete
-    call deoplete#custom#set('ultisnips', 'matchers', ['matcher_fuzzy'])
+"   " Deoplete {
+"       " make sure ultra snip work with deoplete
+"       call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
+"   " }
+
+
+" python for neovim mac {
+let g:python2_host_prog = 'user/local/bin/python'
+let g:python3_host_prog = '/usr/local/Cellar/python3/3.7.7/bin/python3'
 " }
+
+
