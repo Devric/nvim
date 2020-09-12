@@ -73,26 +73,8 @@ Plug 'junegunn/fzf.vim'
 " ====================================
 Plug 'vim-scripts/zoomwintab.vim'   " zoom
 Plug 'simeji/winresizer', {'on':[]} " window resizing easier CTRL+E or :WinResizerStartResize ( enter=accept, q=cancel )
-Plug 'severin-lemaignan/vim-minimap', {'on': ['Minimap','MinimapToggle']}
-" MiniMap {
-let g:minimap_toggle='<leader>m'
-let g:minimap_highlight='Visual'
-" }
-Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree','NERDTreeToggle' ] }   		" tree menu
-" Nerdtree {
-    map <F1> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-" }
 
 Plug 'ludovicchabant/vim-gutentags' " ctags generato
-
-Plug 'fholgado/minibufexpl.vim', {'on':'MBEToggle'}
 
 Plug 'mileszs/ack.vim', {'on':'Ack'}
 " Ack {
@@ -560,12 +542,6 @@ endif
 " fzf {
     nnoremap <leader>x :FZF<CR>
 " }
-
-"   " Deoplete {
-"       " make sure ultra snip work with deoplete
-"       call deoplete#custom#source('ultisnips', 'matchers', ['matcher_fuzzy'])
-"   " }
-
 
 " python for neovim mac {
 let g:python2_host_prog = 'user/local/bin/python'
