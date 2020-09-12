@@ -71,6 +71,29 @@ Plug 'junegunn/fzf.vim'
 
 " IDE
 " ====================================
+Plug 'vim-scripts/zoomwintab.vim'   " zoom
+Plug 'simeji/winresizer', {'on':[]} " window resizing easier CTRL+E or :WinResizerStartResize ( enter=accept, q=cancel )
+Plug 'severin-lemaignan/vim-minimap', {'on': ['Minimap','MinimapToggle']}
+" MiniMap {
+let g:minimap_toggle='<leader>m'
+let g:minimap_highlight='Visual'
+" }
+Plug 'scrooloose/nerdtree', { 'on': [ 'NERDTree','NERDTreeToggle' ] }   		" tree menu
+" Nerdtree {
+    map <F1> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+
+    let NERDTreeShowBookmarks=1
+    let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+    let NERDTreeChDirMode=0
+    let NERDTreeQuitOnOpen=1
+    let NERDTreeShowHidden=1
+    let NERDTreeKeepTreeInNewTab=1
+" }
+
+Plug 'ludovicchabant/vim-gutentags' " ctags generato
+
+Plug 'fholgado/minibufexpl.vim', {'on':'MBEToggle'}
+
 Plug 'mileszs/ack.vim', {'on':'Ack'}
 " Ack {
     map <Leader>f :Ack <cword><cr>
@@ -125,15 +148,15 @@ Plug 'christoomey/vim-tmux-navigator' " provide movment integration with tmux, r
 Plug 'vim-scripts/sudo.vim'           " edit permission files :e sudo:/etc/passwd
 Plug 'matze/vim-move'                 " moving lines <A-k>
 " vim-move {
-let g:move_map_keys = 0
-vmap <S-k> <Plug>MoveBlockUp
-vmap <S-j> <Plug>MoveBlockDown
+    let g:move_map_keys = 0
+    vmap <S-k> <Plug>MoveBlockUp
+    vmap <S-j> <Plug>MoveBlockDown
 " }
 
 
 Plug '29decibel/vim-stringify'        " fast stringfy, <leader>G // set within this vim script
 " stringify {
-map <leader>g :call Stringify()<CR>
+    map <leader>g :call Stringify()<CR>
 " }
 
 Plug 'moll/vim-node'
@@ -379,6 +402,15 @@ else
     map <C-k> <C-w>k
     map <C-l> <C-w>l
 endif
+
+" =====================================
+" Ternminal mode
+" =====================================
+nnoremap <leader>z :copen<CR>:terminal<CR>i source ~/.profile<CR>clear<CR>
+tnoremap <C-w>h <C-\><C-n><C-w>h
+tnoremap <C-w>j <C-\><C-n><C-w>j
+tnoremap <C-w>k <C-\><C-n><C-w>k
+tnoremap <C-w>l <C-\><C-n><C-w>l
 
 set pastetoggle=<F9>
 " disable paste mode after leave insert
