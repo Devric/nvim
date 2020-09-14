@@ -92,7 +92,9 @@ Plug 'liuchengxu/vista.vim'
     \ }
 
     let g:vista#renderer#icons = {
-    \   "variable": "\uf71e",
+    \   "class": "\ue79b",
+    \   "method": "\uf09a",
+    \   "variable": "\uf260",
     \  }
 
     function! NearestMethodOrFunction() abort
