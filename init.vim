@@ -76,12 +76,45 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-scripts/zoomwintab.vim'   " zoom
 Plug 'simeji/winresizer', {'on':[]} " window resizing easier CTRL+E or :WinResizerStartResize ( enter=accept, q=cancel )
 
-Plug 'ludovicchabant/vim-gutentags' " ctags generato
-source ~/.config/nvim/plug-config/ctags.vim
+" Plug 'ludovicchabant/vim-gutentags' " ctags generaton
+Plug 'liuchengxu/vista.vim'
+" vista tag bar {
+    nnoremap <F3> :Vista!!<CR>
+    " <leader>t not working
+    nnoremap <silent><nowait> ;t  :<C-u>Vista finder<cr>
+    let g:vista#renderer#enable_icon = 1
+    let g:vista#renderer#  = 1
+    let g:vista_default_executive = 'coc'
+    let g:vista_fzf_preview = ['right:50%']
+    let g:vista_stay_on_open = 0
+    let g:vista_ctags_cmd = {
+      \ 'typescript': 'tstags -f-',
+    \ }
+
+    let g:vista#renderer#icons = {
+    \   "variable": "\uf71e",
+    \  }
+
+    function! NearestMethodOrFunction() abort
+        return get(b:, 'vista_nearest_method_or_function', '')
+    endfunction
+
+    set statusline+=%{NearestMethodOrFunction()}
+
+    " By default vista.vim never run if you don't call it explicitly.
+    "
+    " If you want to show the nearest function in your statusline automatically,
+    " you can add the following line to your vimrc
+    autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+" }
+
+
+" source ~/.config/nvim/plug-config/ctags.vim
 
 Plug 'mileszs/ack.vim', {'on':'Ack'}
 " Ack {
-    map <Leader>f :Ack <cword><cr>
+    let g:ackprg = 'ag --nogroup --nocolor --column'
+    nmap ;f :Ack <C-R>=expand("<cword>")<CR><CR>
 " }
 
 "Plug 'zoeesilcock/vim-caniuse' " can i use :Caniuse border-radius
@@ -145,13 +178,6 @@ Plug '29decibel/vim-stringify'        " fast stringfy, <leader>G // set within t
 " }
 
 Plug 'moll/vim-node'
-
-Plug 'preservim/tagbar', {'on': 'TagbarToggle'}
-" tagbar {
-    let g:tagbar_usearrows = 1
-    nnoremap <F3> :TagbarToggle<CR>
-" }
-
 
 Plug 'vim-scripts/compview'           " fast serach buffer <leader> v
 " compview {
@@ -526,10 +552,6 @@ endif
 " }
 
 
-" ag {
-    let g:ackprg = 'ag --nogroup --nocolor --column'
-    nmap <leader>g :Ack <C-R>=expand("<cword>")<CR><CR>
-" }
 
 " syntastic {
     let g:syntastic_javascript_checkers=['jshint']

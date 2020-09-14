@@ -21,5 +21,6 @@
         ],
         "v": "open:vsplit"
     },
-    "explorer.icon.enableVimDevicons": true
+    "explorer.icon.enableVimDevicons": true,
+    "coc.preferences.extensionUpdateCheck": "daily"
 }
