@@ -32,6 +32,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'morhetz/gruvbox'      " theme
 Plug 'sheerun/vim-polyglot' " syntax highlight
 Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript','vue','ng','jsx','html']}
+Plug 'HerringtonDarkholme/yats.vim'
+
 Plug 'jparise/vim-graphql'
 " js syntax {
     let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter,react,flux,jasmine,chai,vue,d3'
@@ -75,6 +77,7 @@ Plug 'vim-scripts/zoomwintab.vim'   " zoom
 Plug 'simeji/winresizer', {'on':[]} " window resizing easier CTRL+E or :WinResizerStartResize ( enter=accept, q=cancel )
 
 Plug 'ludovicchabant/vim-gutentags' " ctags generato
+source ~/.config/nvim/plug-config/ctags.vim
 
 Plug 'mileszs/ack.vim', {'on':'Ack'}
 " Ack {
@@ -143,7 +146,7 @@ Plug '29decibel/vim-stringify'        " fast stringfy, <leader>G // set within t
 
 Plug 'moll/vim-node'
 
-Plug 'majutsushi/tagbar', {'on': 'TagbarToggle'}
+Plug 'preservim/tagbar', {'on': 'TagbarToggle'}
 " tagbar {
     let g:tagbar_usearrows = 1
     nnoremap <F3> :TagbarToggle<CR>
@@ -181,6 +184,12 @@ Plug 'neoclide/coc-tsserver', {'do': 'npm install --from-lockfile'}
 
 " replace nerd tree
 Plug 'weirongxu/coc-explorer', {'do': 'npm install --from-lockfile'}
+
+" bookmark
+" mx  > to mark with x
+" dmx > to delete mark on x
+" m<Space> delete marks on current bufer
+Plug 'kshenoy/vim-signature'
 
 " replaces ultra snippet
 Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
@@ -248,6 +257,7 @@ let g:indentLine_setColors = 0
 " ==================================================
 set hlsearch                                    " highlight search things
 hi htmlTag guifg=#00bdec guibg=#200000 gui=bold " highlight html tags block
+hi Normal guibg=NONE ctermbg=NONE
 set cursorline   "highlight current line
 set cursorcolumn "highlight current column
 
