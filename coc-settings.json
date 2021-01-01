@@ -6,14 +6,13 @@
         "graphql",
         "html",
         "yaml",
-        "json",
         "python"
     ],
-    "snippets.uerSnippetsDirectory": "~/.config/nvim/UltiSnips",
+    "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
     "explorer.width": 30,
     "explorer.icon.enableNerdfont": true,
     "explorer.previewAction.onHover": false,
-    "explorer.keyMappings": {
+    "explorer.keyMappings.global": {
         "<cr>": [
             "expandable?",
             "expand",

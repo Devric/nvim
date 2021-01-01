@@ -202,7 +202,7 @@ Plug 'scrooloose/nerdcommenter' 	" easy commenting
 Plug 'vim-scripts/HTML-AutoCloseTag'  " fast close html tags
 Plug 'jiangmiao/auto-pairs'
 
-Plug 'rust-lang/rust.vim'
+"Plug 'rust-lang/rust.vim'
 
 " replace deoplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -213,17 +213,16 @@ Plug 'neoclide/coc-tsserver', {'do': 'npm install --from-lockfile'}
 " replace nerd tree
 Plug 'weirongxu/coc-explorer', {'do': 'npm install --from-lockfile'}
 
+" replaces ultra snippet
+Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
+source ~/.config/nvim/plug-config/coc.vim
+" install the plugins from https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+
 " bookmark
 " mx  > to mark with x
 " dmx > to delete mark on x
 " m<Space> delete marks on current bufer
 Plug 'kshenoy/vim-signature'
-
-" replaces ultra snippet
-Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
-source ~/.config/nvim/plug-config/coc.vim
-" install the plugins from https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
-" :CocInstall coc-rome
 
 " Version Control
 " ======================================
