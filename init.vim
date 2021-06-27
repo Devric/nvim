@@ -33,8 +33,14 @@ Plug 'morhetz/gruvbox'      " theme
 Plug 'sheerun/vim-polyglot' " syntax highlight
 Plug 'othree/javascript-libraries-syntax.vim', {'for':['javascript','vue','ng','jsx','html']}
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'kevinoid/vim-jsonc' "allow json with comment
 
-Plug 'jparise/vim-graphql'
+Plug 'jparise/vim-graphql' " graphql
+Plug 'pangloss/vim-javascript' " JavaScript syntax
+Plug 'leafgarland/typescript-vim' " type script
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'peitalin/vim-jsx-typescript'
+
 " js syntax {
     let g:used_javascript_libs = 'underscore,angularjs,angularui,angularuirouter,react,flux,jasmine,chai,vue,d3'
 " }
@@ -217,6 +223,8 @@ Plug 'weirongxu/coc-explorer', {'do': 'npm install --from-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
 source ~/.config/nvim/plug-config/coc.vim
 " install the plugins from https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+
+plug 'pantharshit00/coc-prisma'
 
 " bookmark
 " mx  > to mark with x

@@ -6,7 +6,8 @@
         "graphql",
         "html",
         "yaml",
-        "python"
+        "python",
+        "prisma"
     ],
     "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
     "explorer.width": 30,
