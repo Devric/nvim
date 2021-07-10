@@ -224,7 +224,8 @@ Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
 source ~/.config/nvim/plug-config/coc.vim
 " install the plugins from https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
 
-plug 'pantharshit00/coc-prisma'
+Plug 'pantharshit00/coc-prisma'
+Plug 'pantharshit00/vim-prisma'
 
 " bookmark
 " mx  > to mark with x
