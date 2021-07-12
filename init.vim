@@ -125,26 +125,6 @@ Plug 'mileszs/ack.vim', {'on':'Ack'}
     nmap ;f :Ack <C-R>=expand("<cword>")<CR><CR>
 " }
 
-"Plug 'zoeesilcock/vim-caniuse' " can i use :Caniuse border-radius
-
-Plug 'editorconfig/editorconfig-vim'
-
-Plug 'itchyny/lightline.vim' 		" cool status line
-" lightline {
-    let g:lightline = {
-    \   'active': {
-    \     'left':[ [ 'mode', 'paste' ],
-    \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-    \     ]
-    \   },
-    \   'component': {
-    \     'lineinfo': '%3l:%-2v',
-    \   },
-    \   'component_function': {
-    \     'gitbranch': 'fugitive#head',
-    \   }
-    \ }
-" }
 
 " replace mini buffer
 Plug 'mengelbrecht/lightline-bufferline'
@@ -210,8 +190,36 @@ Plug 'jiangmiao/auto-pairs'
 
 "Plug 'rust-lang/rust.vim'
 
+"Plug 'zoeesilcock/vim-caniuse' " can i use :Caniuse border-radius
+
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'itchyny/lightline.vim' 		" cool status line
+" lightline {
+    let g:lightline = {
+    \   'active': {
+    \     'left':[ [ 'mode', 'paste' ],
+    \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+    \     ]
+    \   },
+    \   'component': {
+    \     'lineinfo': '%3l:%-2v',
+    \   },
+    \   'component_function': {
+    \     'gitbranch': 'fugitive#head',
+    \   }
+    \ }
+" }
+
+" COC
+" ==================================
+
 " replace deoplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" https://www.tabnine.com/
+" AI code complete
+Plug 'neoclide/coc-tabnine', {'do': 'npm install --from-lockfile'}
 
 " replace tern
 Plug 'neoclide/coc-tsserver', {'do': 'npm install --from-lockfile'}
@@ -223,6 +231,17 @@ Plug 'weirongxu/coc-explorer', {'do': 'npm install --from-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'npm install --from-lockfile'}
 source ~/.config/nvim/plug-config/coc.vim
 " install the plugins from https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 Plug 'pantharshit00/coc-prisma'
 Plug 'pantharshit00/vim-prisma'
@@ -310,7 +329,7 @@ set showmatch " show matching bracets when text indication is over them
 set mat=2     " how many tenths of a second to blink
 
 "Make the completion menus readable
-highlight Pmenu ctermfg=0 ctermbg=3
+hi Pmenu ctermbg=black ctermfg=white
 highlight PmenuSel ctermfg=0 ctermbg=7
 
 """""""""""""""""""""""""""""""""

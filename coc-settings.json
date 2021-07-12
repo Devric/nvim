@@ -22,5 +22,7 @@
         "v": "open:vsplit"
     },
     "explorer.icon.enableVimDevicons": true,
-    "coc.preferences.extensionUpdateCheck": "daily"
+    "coc.preferences.extensionUpdateCheck": "daily",
+    "tabnine.triggers": [],
+    "tabnine.shortcut": "TN"
 }
