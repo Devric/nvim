@@ -125,6 +125,22 @@ Plug 'mileszs/ack.vim', {'on':'Ack'}
     nmap ;f :Ack <C-R>=expand("<cword>")<CR><CR>
 " }
 
+Plug 'itchyny/lightline.vim' 		" cool status line
+" lightline {
+    let g:lightline = {
+    \   'active': {
+    \     'left':[ [ 'mode', 'paste' ],
+    \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
+    \     ]
+    \   },
+    \   'component': {
+    \     'lineinfo': '%3l:%-2v',
+    \   },
+    \   'component_function': {
+    \     'gitbranch': 'fugitive#head',
+    \   }
+    \ }
+" }
 
 " replace mini buffer
 Plug 'mengelbrecht/lightline-bufferline'
@@ -194,22 +210,6 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'itchyny/lightline.vim' 		" cool status line
-" lightline {
-    let g:lightline = {
-    \   'active': {
-    \     'left':[ [ 'mode', 'paste' ],
-    \              [ 'gitbranch', 'readonly', 'filename', 'modified' ]
-    \     ]
-    \   },
-    \   'component': {
-    \     'lineinfo': '%3l:%-2v',
-    \   },
-    \   'component_function': {
-    \     'gitbranch': 'fugitive#head',
-    \   }
-    \ }
-" }
 
 " COC
 " ==================================
