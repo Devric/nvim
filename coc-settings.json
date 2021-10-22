@@ -11,7 +11,6 @@
     ],
     "snippets.userSnippetsDirectory": "~/.config/nvim/UltiSnips",
     "explorer.width": 30,
-    "explorer.icon.enableNerdfont": true,
     "explorer.previewAction.onHover": false,
     "explorer.keyMappings.global": {
         "<cr>": [
@@ -21,7 +20,8 @@
         ],
         "v": "open:vsplit"
     },
-    "explorer.icon.enableVimDevicons": true,
+    "explorer.icon.enableNerdfont": true,
+    "explorer.icon.source": "vim-devicons",
     "coc.preferences.extensionUpdateCheck": "daily",
     "tabnine.triggers": [],
     "tabnine.shortcut": "TN"
