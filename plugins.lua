@@ -26,6 +26,11 @@ require('packer').startup(function()
   use 'tpope/vim-commentary'
   -- gcc, gcu, gcap
 
+  -- http://neovimcraft.com/plugin/ms-jpq/coq_nvim/index.html
+  -- https://github.com/tpope/vim-dadbod
+  -- https://github.com/tpope/vim-dispatch
+  -- https://dev.to/voyeg3r/my-ever-growing-neovim-init-lua-h0p
+
   -- =======================
   -- End edit Plugin> run PackerSync after adding plugin
   -- =======================
