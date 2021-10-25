@@ -3,5 +3,6 @@ vim.g.mapleader = ';'
 
 require('plugins') -- packer
 require('settings')
+require('lsp')
 require('mappings')
 

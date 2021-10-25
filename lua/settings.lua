@@ -10,6 +10,9 @@ local indent = 4
 
 cmd 'syntax enable'
 cmd 'filetype plugin indent on'
+-- cmd 'colorscheme onedark'
+-- cmd "let g:gruvbox_contrast = 'hard'"
+
 settings('b', 'shiftwidth', indent)
 settings('b', 'tabstop', indent)
 settings('o', 'hidden', true) -- enable background buffers
@@ -27,12 +30,17 @@ settings('o', 'tabstop', 4)
 settings('o', 'wildmode', 'list:longest') -- commandline copletion mode	
 settings('w', 'number', true)
 settings('w', 'wrap', false) -- disable line wrap
+settings('w', 'cursorline', true)
+settings('w', 'cursorcolumn', true)
 settings('o', 'clipboard','unnamed,unnamedplus')
-settings('o', 'termguicolors',true) -- true color support
+-- settings('o', 'termguicolors',true) -- true color support
+
+vim.opt.wildignore = '.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif'
+vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
 
 
 -- settings('w', 'relativenumber', true)
 -- settings('b', 'expandtab', true) -- use space instead of tabs
 
--- Highlight on yank
+-- HigC-- on yank
 vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
