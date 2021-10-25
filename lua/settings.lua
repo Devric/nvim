@@ -10,8 +10,8 @@ local indent = 4
 
 cmd 'syntax enable'
 cmd 'filetype plugin indent on'
--- cmd 'colorscheme onedark'
--- cmd "let g:gruvbox_contrast = 'hard'"
+cmd 'colorscheme gruvbox'
+cmd "let g:gruvbox_contrast = 'soft'"
 
 settings('b', 'shiftwidth', indent)
 settings('b', 'tabstop', indent)
@@ -33,7 +33,6 @@ settings('w', 'wrap', false) -- disable line wrap
 settings('w', 'cursorline', true)
 settings('w', 'cursorcolumn', true)
 settings('o', 'clipboard','unnamed,unnamedplus')
--- settings('o', 'termguicolors',true) -- true color support
 
 vim.opt.wildignore = '.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif'
 vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")

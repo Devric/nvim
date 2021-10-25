@@ -173,5 +173,5 @@ require('packer').startup(function()
 	end
 end)
 
-vim.o.background = "dark"
-require 'onedarkpro' .load()
+--vim.o.background = "dark"
+--require 'onedarkpro' .load()
