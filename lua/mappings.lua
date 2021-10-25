@@ -32,6 +32,10 @@ map('n', '<leader>s', ':vsp<CR>')  -- new tab
 -- ====================================
 map('i', 'jk', '<Esc>')     -- jk to escape
 map('i', '<C-c>', '<Esc>')  -- control c in insert mode to escape
+map('i', '<C-h>', '<C-o>h') 
+map('i', '<C-j>', '<C-o>j') 
+map('i', '<C-k>', '<C-o>k') 
+map('i', '<C-l>', '<C-o>l') 
 
 -- Visual mode
 -- ====================================
@@ -79,7 +83,7 @@ map('v', '<Space>', ":Tabularize /")
 -- ====================================
 map('n', '<leader>x', ":FZF<CR>")
 map('n', '<leader>X', ":FzfLua<CR>")
-
+map('n', '<C-Space>', "<CMD>FzfLua buff<CR>")
 
 
 -- Plugin: LSP, lspsaga, trouble, coq
@@ -109,3 +113,11 @@ map('n', 'T', '<cmd>TroubleToggle<CR>', opts)
 -- ====================================
 map('n', 'P', "<cmd>lua require('nvim-window').pick()<CR>", opts)
 
+-- Plugin: undotree
+-- ====================================
+map('n', '<F3>', "<cmd>UndotreeToggle<CR>", opts)
+
+-- Plugin: splitjoint
+-- ====================================
+map('n', '<leader>Sj', "<cmd>SplitjoinJoin<CR>", opts)
+map('n', '<leader>Ss', "<cmd>SplitjoinSplit<CR>", opts)

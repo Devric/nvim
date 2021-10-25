@@ -24,6 +24,7 @@ require('packer').startup(function()
 	-- =======================
 	
 	-- UI
+	use 'mbbill/undotree'
 	use 'morhetz/gruvbox' -- theme
 	use 'olimorris/onedarkpro.nvim'
 	use 'yamatsum/nvim-cursorline'
@@ -45,6 +46,8 @@ require('packer').startup(function()
 	}
 
 	-- UTILITY
+	use 'AndrewRadev/splitjoin.vim'
+ 	use 'editorconfig/editorconfig-vim'
 	use {
 		"folke/which-key.nvim",
 		config = function() require("which-key").setup {
@@ -156,13 +159,12 @@ require('packer').startup(function()
 			}
 		end
 	}
-
-
-
-	-- http://neovimcraft.com/plugin/ms-jpq/coq_nvim/index.html
+	
+	
+	-- https://github.com/fedepujol/move.nvim
+	-- https://github.com/alexghergh/nvim-tmux-navigation
 	-- https://github.com/tpope/vim-dadbod
-	-- https://github.com/tpope/vim-dispatch
-	-- https://dev.to/voyeg3r/my-ever-growing-neovim-init-lua-h0p
+	-- https://github.com/tpope/vim-distant
 
 	-- =======================
 	-- End edit Plugin> run PackerSync after adding plugin
