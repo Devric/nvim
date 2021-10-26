@@ -44,6 +44,20 @@ require('packer').startup(function()
 		requires = 'kyazdani42/nvim-web-devicons',
 		config = function() require'nvim-tree'.setup {} end
 	}
+	use {
+		'norcalli/nvim-colorizer.lua',
+		config = function()
+			require'colorizer'.setup()
+		end
+	}
+	use {
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require'indent_blankline'.setup {
+				show_end_of_line = true,
+			}
+		end
+	}
 
 	-- UTILITY
 	use 'AndrewRadev/splitjoin.vim'
@@ -99,7 +113,10 @@ require('packer').startup(function()
 	use {
 		'abecodes/tabout.nvim',
 		config = function()
-			require('tabout').setup { }
+			require('tabout').setup {
+				tabkey = "",
+				backwards_tabkey = "",
+			}
 		end
 	}
 	

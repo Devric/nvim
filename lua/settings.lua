@@ -33,6 +33,7 @@ settings('w', 'wrap', false) -- disable line wrap
 settings('w', 'cursorline', true)
 settings('w', 'cursorcolumn', true)
 settings('o', 'clipboard','unnamed,unnamedplus')
+settings('o', 'termguicolors',true)
 
 vim.opt.wildignore = '.svn,CVS,.git,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif'
 vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
@@ -43,3 +44,8 @@ vim.cmd("let g:coq_settings = { 'auto_start': 'shut-up' }")
 
 -- HigC-- on yank
 vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
+
+-- transparent background go with the terminal transparency
+vim.cmd 'hi! Normal ctermbg=NONE guibg=NONE'
+vim.cmd 'hi! NonText ctermbg=NONE guibg=NONE'
+
