@@ -3,4 +3,4 @@ autoload/
 plugged
 .netrwhist
 tags
-plugin/
+plugin/packer_compiled.lua
