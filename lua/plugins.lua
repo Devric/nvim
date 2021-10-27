@@ -85,7 +85,7 @@ require('packer').startup(function()
 		end
 	}
 	use 'tpope/vim-commentary'
-	use 'kkoomen/vim-doge'
+	use {'kkoomen/vim-doge', run = ":call doge#install()"}
 	use {
 		'phaazon/hop.nvim',
 		as = 'hop',
