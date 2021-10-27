@@ -83,7 +83,7 @@ map('v', '<Space>', ":Tabularize /")
 -- ====================================
 map('n', '<leader>x', ":FZF<CR>")
 map('n', '<leader>X', ":FzfLua<CR>")
-map('n', '<C-Space>', "<CMD>FzfLua buff<CR>")
+map('n', '<leader>B', "<CMD>FzfLua buffers<CR>")
 
 
 -- Plugin: LSP, lspsaga, trouble, coq

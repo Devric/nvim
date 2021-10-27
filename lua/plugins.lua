@@ -23,10 +23,12 @@ require('packer').startup(function()
 	-- Start edit Plugin
 	-- =======================
 	
+	-- Theme
+	use 'morhetz/gruvbox'
+	use 'olimorris/onedarkpro.nvim'
+	
 	-- UI
 	use 'mbbill/undotree'
-	use 'morhetz/gruvbox' -- theme
-	use 'olimorris/onedarkpro.nvim'
 	use 'yamatsum/nvim-cursorline'
 	use {
 		'nvim-lualine/lualine.nvim',
@@ -70,8 +72,20 @@ require('packer').startup(function()
 			-- refer to the configuration section below
 		} end
 	}
-	use 'kana/vim-smartinput' -- auto close delimiters
+	
+	-- auto close delimiters
+	use {
+		'steelsojka/pears.nvim', 
+		config = function()
+			require "pears".setup(function(conf)
+				conf.pair = {include = {"<", "<!--"}}
+				-- conf.preset "tag_matching"
+				-- with completion integration
+			end)
+		end
+	}
 	use 'tpope/vim-commentary'
+	use 'kkoomen/vim-doge'
 	use {
 		'phaazon/hop.nvim',
 		as = 'hop',
@@ -84,7 +98,6 @@ require('packer').startup(function()
 		'karb94/neoscroll.nvim',
 		config = function() require'neoscroll'.setup {} end
 	}
-	use "gregsexton/MatchTag"
 	use "godlygeek/tabular"
 	use { 'junegunn/fzf', run = './install --bin' }
 	use {
@@ -109,34 +122,25 @@ require('packer').startup(function()
 			require('gitsigns').setup()
 		end
 	}
-	use 'sindrets/diffview.nvim'
 
 	use {
 		'abecodes/tabout.nvim',
 		config = function()
 			require('tabout').setup {
-				tabkey = "",
-				backwards_tabkey = "",
-				-- tabkey = '<Tab>', -- key to trigger tabout, set to an empty string to disable
-				-- backwards_tabkey = '<S-Tab>', -- key to trigger backwards tabout, set to an empty string to disable
-				act_as_tab = true, -- shift content if tab out is not possible
-				act_as_shift_tab = false, -- reverse shift content if tab out is not possible (if your keyboard/terminal supports <S-Tab>)
-				enable_backwards = true, -- well ...
-				completion = true, -- if the tabkey is used in a completion pum
+				completion = true,
 				tabouts = {
 					{open = "'", close = "'"},
 					{open = '"', close = '"'},
 					{open = '`', close = '`'},
 					{open = '(', close = ')'},
 					{open = '[', close = ']'},
-					{open = '{', close = '}'}
+					{open = '{', close = '}'},
+					{open = '<', close = '>'}
 				},
-				ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
-				exclude = {} -- tabout will ignore these filetypes
 			}
 		end,
-		wants = {'nvim-treesitter'}, -- or require if not used so far
-		after = {'coq'} -- if a completion plugin is using tabs load it before
+		wants = {'nvim-treesitter'} -- or require if not used so far
+		-- after = {'coq'} -- if a completion plugin is using tabs load it before
 	}
 	
 	-- allows quickly select window
@@ -183,7 +187,7 @@ require('packer').startup(function()
 	use 'simrat39/symbols-outline.nvim'
 	use 'glepnir/lspsaga.nvim'
 	use {"ms-jpq/coq_nvim", branch = "coq"}
-    use {"ms-jpq/coq.artifacts", branch = 'artifacts'}
+     	use {"ms-jpq/coq.artifacts", branch = 'artifacts'}
 	use {
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
@@ -196,11 +200,12 @@ require('packer').startup(function()
 		end
 	}
 	
-	
+	-- consider
 	-- https://github.com/fedepujol/move.nvim
 	-- https://github.com/alexghergh/nvim-tmux-navigation
 	-- https://github.com/tpope/vim-dadbod
 	-- https://github.com/tpope/vim-distant
+	-- https://github.com/brooth/far.vim
 
 	-- =======================
 	-- End edit Plugin> run PackerSync after adding plugin
