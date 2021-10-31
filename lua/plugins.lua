@@ -81,6 +81,13 @@ require('packer').startup(function()
 				conf.pair = {include = {"<", "<!--"}}
 				-- conf.preset "tag_matching"
 				-- with completion integration
+				conf.on_enter(function(pears_handle)
+					if vim.fn.pumvisible() == 1 and vim.fn.complete_info().selected ~= -1 then
+						vim.cmd[[:startinsert | call feedkeys("\<c-y>")]]
+					else
+						pears_handle()
+					end
+				end)
 			end)
 		end
 	}
