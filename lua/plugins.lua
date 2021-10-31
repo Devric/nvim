@@ -129,26 +129,6 @@ require('packer').startup(function()
 			require('gitsigns').setup()
 		end
 	}
-
-	use {
-		'abecodes/tabout.nvim',
-		config = function()
-			require('tabout').setup {
-				completion = true,
-				tabouts = {
-					{open = "'", close = "'"},
-					{open = '"', close = '"'},
-					{open = '`', close = '`'},
-					{open = '(', close = ')'},
-					{open = '[', close = ']'},
-					{open = '{', close = '}'},
-					{open = '<', close = '>'}
-				},
-			}
-		end,
-		wants = {'nvim-treesitter'} -- or require if not used so far
-		-- after = {'coq'} -- if a completion plugin is using tabs load it before
-	}
 	
 	-- allows quickly select window
 	use 'https://gitlab.com/yorickpeterse/nvim-window.git'
@@ -213,6 +193,51 @@ require('packer').startup(function()
 	-- https://github.com/tpope/vim-dadbod
 	-- https://github.com/tpope/vim-distant
 	-- https://github.com/brooth/far.vim
+
+	use {
+		'abecodes/tabout.nvim',
+		config = function()
+			require('tabout').setup {
+				tabkey = "",
+				backward_tabkey = "",
+				tabouts = {
+					{open = "'", close = "'"},
+					{open = '"', close = '"'},
+					{open = '`', close = '`'},
+					{open = '(', close = ')'},
+					{open = '[', close = ']'},
+					{open = '{', close = '}'},
+					{open = '<', close = '>'}
+				},
+			}
+			-- Plugin: tabout with auto completetion
+			-- ====================================
+			local function replace_keycodes(str)
+				return vim.api.nvim_replace_termcodes(str, true, true, true)
+			end
+
+			function _G.tab_binding()
+				if vim.fn.pumvisible() ~= 0 then
+					return replace_keycodes("<C-n>")
+				else
+					return replace_keycodes("<Plug>(Tabout)")
+				end
+			end
+
+			function _G.s_tab_binding()
+				if vim.fn.pumvisible() ~= 0 then
+					return replace_keycodes("<C-p>")
+				else
+					return replace_keycodes("<Plug>(TaboutBack)")
+				end
+			end
+
+			vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_binding()", {expr = true})
+			vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_binding()", {expr = true})
+		end,
+		wants = {'nvim-treesitter'} -- or require if not used so far
+		-- after = {'coq'} -- if a completion plugin is using tabs load it before
+	}
 
 	-- =======================
 	-- End edit Plugin> run PackerSync after adding plugin
