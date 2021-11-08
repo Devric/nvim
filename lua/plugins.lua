@@ -61,6 +61,11 @@ require('packer').startup(function()
 		end
 	}
 
+	use {
+		"luukvbaal/stabilize.nvim",
+		config = function() require("stabilize").setup() end
+	}
+
 	-- UTILITY
 	use 'AndrewRadev/splitjoin.vim'
 	use 'editorconfig/editorconfig-vim'
