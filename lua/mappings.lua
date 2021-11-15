@@ -112,7 +112,7 @@ map('n', 'T', '<cmd>TroubleToggle<CR>', opts)
 
 -- Plugin: nvim-window
 -- ====================================
-map('n', 'P', "<cmd>lua require('nvim-window').pick()<CR>", opts)
+map('n', '<leader><space>', "<cmd>lua require('nvim-window').pick()<CR>", opts)
 
 -- Plugin: undotree
 -- ====================================
