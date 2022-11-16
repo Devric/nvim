@@ -22,13 +22,13 @@ local lsp_installer_servers = require'nvim-lsp-installer.servers'
 local servers = {
 	"tsserver",
 	"tailwindcss",
-	"graphql",
 	"emmet_ls",
 	"eslint",
 	"bashls",
 	"jsonls",
 	"svelte",
-	"prismals"
+	"prismals",
+	"solang"
 }
 
 -- Use an on_attach function to only map the following keys

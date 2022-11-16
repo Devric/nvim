@@ -52,6 +52,10 @@ require('packer').startup(function()
 			require'colorizer'.setup()
 		end
 	}
+
+	use 'tomlion/vim-solidity'
+	use 'mattn/emmet-vim'
+
 	use {
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -69,14 +73,15 @@ require('packer').startup(function()
 	-- UTILITY
 	use 'AndrewRadev/splitjoin.vim'
 	use 'editorconfig/editorconfig-vim'
-	use {
-		"folke/which-key.nvim",
-		config = function() require("which-key").setup {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		} end
-	}
+
+	--use {
+	--	"folke/which-key.nvim",
+	--	config = function() require("which-key").setup {
+	--		-- your configuration comes here
+	--		-- or leave it empty to use the default settings
+	--		-- refer to the configuration section below
+	--	} end
+	--}
 	
 	-- auto close delimiters
 	use {
@@ -140,6 +145,7 @@ require('packer').startup(function()
 
 	-- Syntax
 	use 'windwp/nvim-ts-autotag' -- use with treesiter autotag enable
+	use 'chemzqm/vim-jsx-improve'
 	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
@@ -149,6 +155,9 @@ require('packer').startup(function()
 					enable = true
 				},
 				hightlight = {
+					enable = true
+				},
+				indent = {
 					enable = true
 				},
 				ensure_installed = {
@@ -168,6 +177,15 @@ require('packer').startup(function()
 					"vue"
 				}
 			}
+
+			require "nvim-treesitter.parsers".get_parser_configs().Solidity = {
+				install_info = {
+					url = "https://github.com/JoranHonig/tree-sitter-solidity",
+					files = {"src/parser.c"},
+					requires_generate_from_grammar = true,
+				},
+				filetype = 'solidity'
+			}
 		end
 	}
 
@@ -177,7 +195,7 @@ require('packer').startup(function()
 		'williamboman/nvim-lsp-installer',
 	}
 	use 'simrat39/symbols-outline.nvim'
-	use 'glepnir/lspsaga.nvim'
+	use { 'tami5/lspsaga.nvim' } -- tami5 fix the issue of codeaction popup when theres no action, 'glepnir/lspsaga.nvim' not maintaned
 	use {"ms-jpq/coq_nvim", branch = "coq"}
      	use {"ms-jpq/coq.artifacts", branch = 'artifacts'}
 	use {
