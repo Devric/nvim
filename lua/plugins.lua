@@ -32,18 +32,18 @@ require('packer').startup(function()
 	use 'yamatsum/nvim-cursorline'
 	use {
 		'nvim-lualine/lualine.nvim',
-		requires = {'kyazdani42/nvim-web-devicons', opt = true},
+		wants = {'nvim-tree/nvim-web-devicons', opt = true},
 		config = function() require'lualine'.setup {
 			theme = 'gruvbox'
 		} end
 	}
 	use {
 		'romgrk/barbar.nvim',
-		requires = {'kyazdani42/nvim-web-devicons'}
+		requires = {'nvim-tree/nvim-web-devicons'}
 	}
 	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = 'kyazdani42/nvim-web-devicons',
+		'nvim-tree/nvim-tree.lua',
+		requires = 'nvim-tree/nvim-web-devicons',
 		config = function() require'nvim-tree'.setup {} end
 	}
 	use {
@@ -121,11 +121,11 @@ require('packer').startup(function()
 		'ibhagwan/fzf-lua',
 		requires = {
 			'vijaymarupudi/nvim-fzf',
-			'kyazdani42/nvim-web-devicons'
+			'nvim-tree/nvim-web-devicons'
 		}
 	}
 	use {
-		"blackCauldron7/surround.nvim",
+		"https://github.com/ur4ltz/surround.nvim",
 		config = function()
 			require"surround".setup {mappings_style = "sandwich"}
 		end
@@ -200,7 +200,7 @@ require('packer').startup(function()
      	use {"ms-jpq/coq.artifacts", branch = 'artifacts'}
 	use {
 		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
+		requires = "nvim-tree/nvim-web-devicons",
 		config = function()
 			require("trouble").setup {
 				-- your configuration comes here
