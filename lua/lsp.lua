@@ -1,35 +1,57 @@
 -- LSR
 local nvim_lsp = require('lspconfig')
-local lsp_installer = require("nvim-lsp-installer")
+-- local lsp_installer = require("nvim-lsp-installer")
 local coq = require("coq")
 
-lsp_installer.settings {
+
+-- lsp_installer.settings {
+--     ui = {
+--         icons = {
+--             server_installed = "✓",
+--             server_pending = "➜",
+--             server_uninstalled = "✗"
+--         }
+--     }
+-- }
+
+-- lsp_installer.on_server_ready(function (server) server:setup {} end)
+
+-- servers
+
+-- local lsp_installer_servers = require'nvim-lsp-installer.servers'
+
+require("mason").setup {
     ui = {
         icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
+            package_installed = "✓"
         }
     }
 }
 
-lsp_installer.on_server_ready(function (server) server:setup {} end)
-
--- servers
-
-local lsp_installer_servers = require'nvim-lsp-installer.servers'
-
-local servers = {
-	"tsserver",
-	"tailwindcss",
-	"emmet_ls",
-	"eslint",
-	"bashls",
-	"jsonls",
-	"svelte",
-	"prismals",
-	"solang"
+require("mason-lspconfig").setup {
+	ensure_installed = {
+		"tsserver",
+		"tailwindcss",
+		"emmet_ls",
+		"eslint",
+		"bashls",
+		"jsonls",
+		"svelte",
+		-- "solang"
+	}
 }
+
+require("mason-lspconfig").setup_handlers({
+	function (server_name) -- default handler (optional)
+		require("lspconfig")[server_name].setup(require('coq').lsp_ensure_capabilities({
+			on_attach = on_attach,
+			flags = {
+				debounce_text_changes = 150,
+			}
+		}))
+	end
+})
+
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -72,23 +94,23 @@ local on_attach = function(client, bufnr)
 
 end
 
-for key, value in ipairs(servers) do
-	local ok, server = lsp_installer_servers.get_server(value)
-	if not server:is_installed() then
-		server:install()
-	else
-		nvim_lsp[value].setup(
-			coq.lsp_ensure_capabilities {
-				-- Use a loop to conveniently call 'setup' on multiple servers and
-				-- map buffer local keybindings when the language server attaches
-				on_attach = on_attach,
-				flags = {
-					debounce_text_changes = 150,
-				}
-			}
-		)
-	end
-end
+-- for key, value in ipairs(servers) do
+-- 	local ok, server = lsp_installer_servers.get_server(value)
+-- 	if not server:is_installed() then
+-- 		server:install()
+-- 	else
+-- 		nvim_lsp[value].setup(
+-- 			coq.lsp_ensure_capabilities {
+-- 				-- Use a loop to conveniently call 'setup' on multiple servers and
+-- 				-- map buffer local keybindings when the language server attaches
+-- 				on_attach = on_attach,
+-- 				flags = {
+-- 					debounce_text_changes = 150,
+-- 				}
+-- 			}
+-- 		)
+-- 	end
+-- end
 
 
 -- LSP SAGA
